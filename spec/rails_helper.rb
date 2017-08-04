@@ -33,6 +33,9 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   config.include MailerHelpers, type: :mailer
 
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

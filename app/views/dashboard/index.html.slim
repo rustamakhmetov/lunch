@@ -1,5 +1,13 @@
 h2 Dashboard
 .weekdays
-  -Dashboard.weekdays.each do |weekday|
-    li
-      =link_to weekday, ''
+  -Dashboard.menus.each do |day, menu|
+    div id="#{(menu.nil? ? day.strftime("%A") : menu.name).downcase}"
+      ul
+        li
+          -if menu
+            =link_to menu.name, menu_path(menu), remote: true
+            | &nbsp;
+            =link_to 'order', '', remote: true
+          -else
+            = @name_day
+        .menu

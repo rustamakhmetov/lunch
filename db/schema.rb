@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807103402) do
+ActiveRecord::Schema.define(version: 20170818064659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,15 +19,25 @@ ActiveRecord::Schema.define(version: 20170807103402) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "type"
+    t.integer "kind"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
     t.bigint "menu_id"
-    t.index ["menu_id"], name: "index_courses_on_menu_id"
+    t.bigint "course_id"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_menu_items_on_course_id"
+    t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
     t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "created"
+    t.index ["created"], name: "index_menus_on_created", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,5 +65,6 @@ ActiveRecord::Schema.define(version: 20170807103402) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "courses", "menus"
+  add_foreign_key "menu_items", "courses"
+  add_foreign_key "menu_items", "menus"
 end

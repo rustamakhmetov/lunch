@@ -1,6 +1,10 @@
 FactoryGirl.define do
+  sequence(:kind) do |n|
+    n % 3
+  end
+
   factory :course do
     name
-    type 0
+    kind
   end
 end

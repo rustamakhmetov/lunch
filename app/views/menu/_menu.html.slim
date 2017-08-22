@@ -1,1 +1,0 @@
-=render partial: "menu/item", collection: local_assigns[:menu].items.joins("inner join courses on courses.id=menu_items.course_id").order("courses.kind")

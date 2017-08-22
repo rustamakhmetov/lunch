@@ -13,6 +13,9 @@
 class MenuItem < ApplicationRecord
   belongs_to :menu
   belongs_to :course
+  has_many :order_items, dependent: :destroy
 
   validates :price, presence: true
+
+  #accepts_nested_attributes_for :course
 end

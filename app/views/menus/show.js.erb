@@ -1,0 +1,3 @@
+<%= render 'layouts/flash_messages' %>
+
+$("div#<%= @menu.name_css %> .menu").html('<%= j render partial: "menus/menu", locals: { menu: @menu } %>');

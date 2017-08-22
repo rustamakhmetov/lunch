@@ -1,0 +1,14 @@
+h3 Menu:
+= form_for [@menu, @order], html: {class: "order"}, remote: true do |f|
+  -@menu_items.each_pair do |kind_id, items|
+    -@kind = Course.kind_to_sym(kind_id)
+    div class="#{@kind}"
+      h4 #{Course.kind_name(kind_id)}
+      -items.each do |item|
+        = label_tag "order[#{@kind}][id][#{item.id}]", item.course.name
+        = radio_button_tag "order[#{@kind}][id]", item.id
+        br
+      = label_tag "order[#{@kind}][amount]", t("order.amount")
+      = text_field_tag "order[#{@kind}][amount]", 1
+  p
+    = f.submit 'Add order'

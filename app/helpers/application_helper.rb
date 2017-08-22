@@ -20,8 +20,8 @@ module ApplicationHelper
   end
 
   def flash_message(type, text)
-    flash[type] ||= []
-    flash[type] << text
+    flash.now[type] ||= []
+    flash.now[type] << text
   end
 
   def errors_to_flash(model)

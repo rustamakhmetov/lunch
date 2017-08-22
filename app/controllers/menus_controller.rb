@@ -1,4 +1,4 @@
-class MenuController < ApplicationController
+class MenusController < ApplicationController
   before_action :authenticate_user!
   before_action :load_menu, only: [:show]
 

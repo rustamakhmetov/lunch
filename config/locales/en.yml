@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+
+  course:
+    kind:
+      first: "First courses"
+      main: "Main courses"
+      drink: "Drinks"
+  order:
+    amount: "amount"
+  errors:
+    order:
+      empty: "Order is empty"

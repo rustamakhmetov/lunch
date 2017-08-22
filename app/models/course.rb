@@ -2,12 +2,11 @@
 #
 # Table name: courses
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  kind         :integer
-#  menu_item_id :integer
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  kind       :integer
 #
 
 class Course < ApplicationRecord
@@ -19,10 +18,19 @@ class Course < ApplicationRecord
     "[#{kind_to_sym.to_s}] #{self.name}"
   end
 
-  private
+  def self.kind_name(kind_id)
+    case kind_id
+      when 0
+        I18n.t("course.kind.first")
+      when 1
+        I18n.t("course.kind.main")
+      else
+        I18n.t("course.kind.drink")
+    end
+  end
 
-  def kind_to_sym
-    case self.kind
+  def self.kind_to_sym(kind_id)
+    case kind_id
       when 0
         :first
       when 1
@@ -30,5 +38,11 @@ class Course < ApplicationRecord
       else
         :drink
     end
+  end
+
+  private
+
+  def kind_to_sym
+    Course.kind_to_sym(self.kind)
   end
 end

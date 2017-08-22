@@ -1,0 +1,5 @@
+<%= render 'layouts/flash_messages' %>
+
+<% if @order.errors.empty? %>
+  $("div#<%= @menu.name_css %> .order").html("");
+<% end %>

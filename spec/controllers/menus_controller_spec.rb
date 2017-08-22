@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MenuController, type: :controller do
+RSpec.describe MenusController, type: :controller do
   describe 'GET #show' do
     let!(:menu) { create(:menu_with_items) }
 
